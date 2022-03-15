@@ -2,6 +2,8 @@ import { Grid } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import RightSidebar from "../components/RightSidebar";
+import Feed from "../components/Feed";
+import LeftSidebar from "../components/LeftSidebar";
 
 const Home = () => {
   useEffect(() => {
@@ -17,8 +19,8 @@ const Home = () => {
         marginRight="1rem"
       >
         <RightSidebar />
-        <p>Lma</p>
-        <p>Lmaooo</p>
+        <Feed />
+        <LeftSidebar />
       </Grid>
     </div>
   );
