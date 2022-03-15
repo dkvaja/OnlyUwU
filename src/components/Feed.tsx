@@ -2,8 +2,29 @@ import { Avatar, Flex, Heading, Tag } from "@chakra-ui/react";
 import React from "react";
 import Post from "./Post";
 
-const Feed = () => {
-  return (
+type Props = {
+  isExplore: boolean;
+};
+
+const Feed = (props: Props) => {
+  return props?.isExplore ? (
+    <Flex
+      flexDirection="column"
+      gap="1rem"
+      width="100%"
+      position="sticky"
+      top="5.4rem"
+      height="max-content"
+    >
+      <Heading as="h4" size="md">
+        Trending posts
+      </Heading>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+    </Flex>
+  ) : (
     <Flex
       flexDirection="column"
       gap="1rem"

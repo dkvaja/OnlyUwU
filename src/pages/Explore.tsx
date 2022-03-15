@@ -5,9 +5,9 @@ import RightSidebar from "../components/RightSidebar";
 import Feed from "../components/Feed";
 import LeftSidebar from "../components/LeftSidebar";
 
-const Home = () => {
+const Explore = () => {
   useEffect(() => {
-    document.title = "OnlyUwU";
+    document.title = "OnlyUwU - Explore";
   }, []);
   return (
     <div>
@@ -19,11 +19,11 @@ const Home = () => {
         marginRight="1rem"
       >
         <RightSidebar />
-        <Feed isExplore={false} />
+        <Feed isExplore={true} />
         <LeftSidebar />
       </Grid>
     </div>
   );
 };
 
-export default Home;
+export default Explore;
