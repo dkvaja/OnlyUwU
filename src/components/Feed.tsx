@@ -1,9 +1,10 @@
-import { Avatar, Flex, Heading, Tag } from "@chakra-ui/react";
+import { Avatar, Divider, Flex, Heading, Tag } from "@chakra-ui/react";
 import React from "react";
 import Post from "./Post";
 
 type Props = {
   isExplore: boolean;
+  isLibrary: boolean;
 };
 
 const Feed = (props: Props) => {
@@ -21,6 +22,27 @@ const Feed = (props: Props) => {
       </Heading>
       <Post />
       <Post />
+      <Post />
+      <Post />
+    </Flex>
+  ) : props.isLibrary ? (
+    <Flex
+      flexDirection="column"
+      gap="1rem"
+      width="100%"
+      position="sticky"
+      top="5.4rem"
+      height="max-content"
+    >
+      <Heading as="h4" size="md">
+        Liked posts
+      </Heading>
+      <Post />
+      <Post />
+      <Divider />
+      <Heading as="h4" size="md">
+        Saved posts
+      </Heading>
       <Post />
       <Post />
     </Flex>

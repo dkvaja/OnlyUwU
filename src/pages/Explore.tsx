@@ -19,7 +19,7 @@ const Explore = () => {
         marginRight="1rem"
       >
         <RightSidebar />
-        <Feed isExplore={true} />
+        <Feed isExplore={true} isLibrary = {false}/>
         <LeftSidebar />
       </Grid>
     </div>
