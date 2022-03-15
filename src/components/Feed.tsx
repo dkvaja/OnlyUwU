@@ -7,6 +7,7 @@ type Props = {
   isLibrary: boolean;
   isYourPosts: boolean;
   isSearch: boolean;
+  isProfile: boolean;
 };
 
 const Feed = (props: Props) => {
@@ -76,6 +77,23 @@ const Feed = (props: Props) => {
     >
       <Heading as="h4" size="md">
         Search results
+      </Heading>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+    </Flex>
+  ) : props?.isProfile ? (
+    <Flex
+      flexDirection="column"
+      gap="1rem"
+      width="100%"
+      position="sticky"
+      top="5.4rem"
+      height="max-content"
+    >
+      <Heading as="h4" size="md">
+        Idiot shitty posts
       </Heading>
       <Post />
       <Post />

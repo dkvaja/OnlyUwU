@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import YourPosts from "./pages/YourPosts";
 import Search from "./pages/Search";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/library" element={<Library />} />
         <Route path="/your_posts" element={<YourPosts />} />
         <Route path="/search/:caption" element={<Search />} />
+        <Route path="/profile/:uuid" element={<Profile />} />
       </Routes>
     </Router>
   );

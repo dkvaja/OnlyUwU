@@ -16,6 +16,10 @@ import { ImSearch } from "react-icons/im";
 import { FaSun, FaMoon, FaUser } from "react-icons/fa";
 import { IoMdCreate } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import { FaUserCircle } from "react-icons/fa";
+import { AiFillStar } from "react-icons/ai";
+import { IoLogOut } from "react-icons/io5";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -97,9 +101,32 @@ const Navbar = () => {
           Create
         </Button>
       </Tooltip>
-      <Tooltip label="Idiot" openDelay={400}>
-        <Avatar cursor="pointer" />
-      </Tooltip>
+      <Menu>
+        <MenuButton>
+          <Tooltip label="Idiot" openDelay={400}>
+            <Avatar cursor="pointer" />
+          </Tooltip>
+        </MenuButton>
+        <MenuList>
+          <MenuItem
+            gap="0.7rem"
+            onClick={() => {
+              navigate("/profile/lmao");
+            }}
+          >
+            <FaUserCircle size="1.4rem" />
+            Your profile
+          </MenuItem>
+          <MenuItem gap="0.7rem">
+            <AiFillStar size="1.4rem" />
+            Star on github
+          </MenuItem>
+          <MenuItem gap="0.7rem">
+            <IoLogOut size="1.4rem" />
+            Logout
+          </MenuItem>
+        </MenuList>
+      </Menu>
     </Flex>
   );
 };
