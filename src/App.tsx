@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import YourPosts from "./pages/YourPosts";
 import Search from "./pages/Search";
 import Profile from "./pages/Profile";
+import Followers from "./pages/Followers";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/your_posts" element={<YourPosts />} />
         <Route path="/search/:caption" element={<Search />} />
         <Route path="/profile/:uuid" element={<Profile />} />
+        <Route path="/followers" element={<Followers />} />
       </Routes>
     </Router>
   );

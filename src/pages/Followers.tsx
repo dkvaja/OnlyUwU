@@ -3,11 +3,11 @@ import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import RightSidebar from "../components/RightSidebar";
 import Feed from "../components/Feed";
-import ProfileSidebar from "../components/ProfileSidebar";
+import LeftSidebar from "../components/LeftSidebar";
 
-const Profile = () => {
+const Followers = () => {
   useEffect(() => {
-    document.title = "OnlyUwU - Idiot";
+    document.title = "OnlyUwU - Followers";
   }, []);
   return (
     <div>
@@ -24,13 +24,13 @@ const Profile = () => {
           isLibrary={false}
           isYourPosts={false}
           isSearch={false}
-          isProfile={true}
-          isFollower={false}
+          isProfile={false}
+          isFollower={true}
         />
-        <ProfileSidebar />
+        <LeftSidebar />
       </Grid>
     </div>
   );
 };
 
-export default Profile;
+export default Followers;

@@ -1,4 +1,4 @@
-import { Avatar, Divider, Flex, Heading, Tag } from "@chakra-ui/react";
+import { Avatar, Divider, Flex, Heading, Tag, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import Post from "./Post";
 
@@ -8,6 +8,7 @@ type Props = {
   isYourPosts: boolean;
   isSearch: boolean;
   isProfile: boolean;
+  isFollower: boolean;
 };
 
 const Feed = (props: Props) => {
@@ -94,6 +95,43 @@ const Feed = (props: Props) => {
     >
       <Heading as="h4" size="md">
         Idiot shitty posts
+      </Heading>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+    </Flex>
+  ) : props?.isFollower ? (
+    <Flex
+      flexDirection="column"
+      gap="1rem"
+      width="100%"
+      position="sticky"
+      top="5.4rem"
+      height="max-content"
+    >
+      <Flex gap="2rem" alignItems="center" flexWrap="wrap" marginBottom="1rem">
+        <Tooltip label="Your mom" openDelay={400}>
+          <Avatar width="16" height="16" cursor="pointer" />
+        </Tooltip>
+        <Tooltip label="Your uncle" openDelay={400}>
+          <Avatar width="16" height="16" cursor="pointer" />
+        </Tooltip>
+        <Tooltip label="Your dad" openDelay={400}>
+          <Avatar width="16" height="16" cursor="pointer" />
+        </Tooltip>
+        <Tooltip label="Branu" openDelay={400}>
+          <Avatar width="16" height="16" cursor="pointer" />
+        </Tooltip>
+        <Tooltip label="Tim" openDelay={400}>
+          <Avatar width="16" height="16" cursor="pointer" />
+        </Tooltip>
+        <Tooltip label="Tim mom" openDelay={400}>
+          <Avatar width="16" height="16" cursor="pointer" />
+        </Tooltip>
+      </Flex>
+      <Heading as="h4" size="md">
+        Your followers post
       </Heading>
       <Post />
       <Post />

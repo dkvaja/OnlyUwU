@@ -25,6 +25,7 @@ const Explore = () => {
           isYourPosts={false}
           isSearch={false}
           isProfile={false}
+          isFollower={false}
         />
         <LeftSidebar />
       </Grid>
