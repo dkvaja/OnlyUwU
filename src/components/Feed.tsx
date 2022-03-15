@@ -6,6 +6,7 @@ type Props = {
   isExplore: boolean;
   isLibrary: boolean;
   isYourPosts: boolean;
+  isSearch: boolean;
 };
 
 const Feed = (props: Props) => {
@@ -58,6 +59,23 @@ const Feed = (props: Props) => {
     >
       <Heading as="h4" size="md">
         Your shitty posts
+      </Heading>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+    </Flex>
+  ) : props?.isSearch ? (
+    <Flex
+      flexDirection="column"
+      gap="1rem"
+      width="100%"
+      position="sticky"
+      top="5.4rem"
+      height="max-content"
+    >
+      <Heading as="h4" size="md">
+        Search results
       </Heading>
       <Post />
       <Post />

@@ -19,7 +19,12 @@ const YourPosts = () => {
         marginRight="1rem"
       >
         <RightSidebar />
-        <Feed isExplore={false} isLibrary={false} isYourPosts = {true}/>
+        <Feed
+          isExplore={false}
+          isLibrary={false}
+          isYourPosts={true}
+          isSearch={false}
+        />
         <LeftSidebar />
       </Grid>
     </div>

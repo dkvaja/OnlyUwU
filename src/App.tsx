@@ -5,6 +5,7 @@ import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import YourPosts from "./pages/YourPosts";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/library" element={<Library />} />
         <Route path="/your_posts" element={<YourPosts />} />
+        <Route path="/search/:caption" element={<Search />} />
       </Routes>
     </Router>
   );

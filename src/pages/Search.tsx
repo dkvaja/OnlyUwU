@@ -5,9 +5,9 @@ import RightSidebar from "../components/RightSidebar";
 import Feed from "../components/Feed";
 import LeftSidebar from "../components/LeftSidebar";
 
-const Explore = () => {
+const Search = () => {
   useEffect(() => {
-    document.title = "OnlyUwU - Explore";
+    document.title = "OnlyUwU - Search results";
   }, []);
   return (
     <div>
@@ -20,10 +20,10 @@ const Explore = () => {
       >
         <RightSidebar />
         <Feed
-          isExplore={true}
+          isExplore={false}
           isLibrary={false}
           isYourPosts={false}
-          isSearch={false}
+          isSearch={true}
         />
         <LeftSidebar />
       </Grid>
@@ -31,4 +31,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default Search;
