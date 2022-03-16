@@ -153,7 +153,6 @@ const Feed = (props: Props) => {
         <Tag>Movies</Tag>
         <Tag>Music</Tag>
         <Tag>Anime</Tag>
-        <Tag>Po*n</Tag>
         <Tag>YourMom</Tag>
         <Tag>Idk</Tag>
         <Tag>What</Tag>

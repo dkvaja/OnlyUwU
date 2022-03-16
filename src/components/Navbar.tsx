@@ -43,6 +43,9 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const starOnGithub = () => {
+    window.location.href = "https://github.com/VarunLanjhara/OnlyUwU";
+  };
   return (
     <Flex
       justifyContent={isMobile ? "" : "space-between"}
@@ -155,7 +158,7 @@ const Navbar = () => {
             <FaUserCircle size="1.4rem" />
             Your profile
           </MenuItem>
-          <MenuItem gap="0.7rem">
+          <MenuItem gap="0.7rem" onClick={starOnGithub}>
             <AiFillStar size="1.4rem" />
             Star on github
           </MenuItem>

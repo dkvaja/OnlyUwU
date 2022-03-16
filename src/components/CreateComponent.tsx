@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Flex, Heading, Image, Input, Button } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Image,
+  Input,
+  Button,
+  useToast,
+} from "@chakra-ui/react";
 import { BsImageFill } from "react-icons/bs";
 
 const CreateComponent = () => {
@@ -10,6 +17,7 @@ const CreateComponent = () => {
     //@ts-ignore
     setImageUrl(URL.createObjectURL(e?.target?.files[0]));
   };
+  const toast = useToast();
   return (
     <Flex flexDirection="column" gap="2rem" width="100%" height="max-content">
       <Heading as="h4" size="md">
@@ -58,7 +66,19 @@ const CreateComponent = () => {
         )}
       </Flex>
       {caption.length >= 5 && caption.length <= 100 && imageUrl !== "" ? (
-        <Button colorScheme="purple" marginBottom="1rem">
+        <Button
+          colorScheme="purple"
+          marginBottom="1rem"
+          onClick={() => {
+            toast({
+              title: "Not implemented yet.",
+              description: "Painman working on it so plz be patient.",
+              status: "warning",
+              duration: 6900,
+              isClosable: true,
+            });
+          }}
+        >
           Create post
         </Button>
       ) : (

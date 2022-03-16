@@ -10,6 +10,7 @@ import {
   Tooltip,
   useColorMode,
   IconButton,
+  useToast,
 } from "@chakra-ui/react";
 import { ImSearch } from "react-icons/im";
 import { FaSun, FaMoon, FaUser } from "react-icons/fa";
@@ -20,6 +21,7 @@ const LoginNavbar = () => {
     document.title = "OnlyUwU - Login";
   }, []);
   const { colorMode, toggleColorMode } = useColorMode();
+  const toast = useToast();
   return (
     <Flex
       justifyContent="space-between"
@@ -76,6 +78,15 @@ const LoginNavbar = () => {
           variant="solid"
           borderRadius={24}
           padding={6}
+          onClick={() => {
+            toast({
+              title: "Not implemented yet.",
+              description: "Painman working on it so plz be patient.",
+              status: "warning",
+              duration: 6900,
+              isClosable: true,
+            });
+          }}
         >
           Get started
         </Button>
