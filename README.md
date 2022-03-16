@@ -7,7 +7,7 @@ OnlyUwU is a social networking website, where you can find new friends, share th
 - React
 - Typescript
 - Chakra ui
-- Will use firebase for backend
+- I will use firebase for backend
 - I will use firebase storage for storing images and stuff
 
 <img src = "https://github.com/VarunLanjhara/OnlyUwU/blob/main/public/bgig.png" alt = "" width = "1100px" height = "500px">
