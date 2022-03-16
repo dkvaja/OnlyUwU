@@ -13,7 +13,7 @@ import {
   AvatarBadge,
 } from "@chakra-ui/react";
 import { ImSearch } from "react-icons/im";
-import { FaSun, FaMoon, FaUser } from "react-icons/fa";
+import { FaSun, FaMoon, FaUser, FaBell } from "react-icons/fa";
 import { IoMdCreate } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import {
@@ -26,6 +26,17 @@ import {
 import { FaUserCircle } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
 import { IoLogOut } from "react-icons/io5";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+} from "@chakra-ui/react";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -97,6 +108,22 @@ const Navbar = () => {
           />
         </Tooltip>
       )}
+      <Popover>
+        <PopoverTrigger>
+          {/* <Tooltip label="Notifications" openDelay={400}> */}
+          <IconButton icon={<FaBell />} aria-label="Notification" />
+          {/* </Tooltip> */}
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverArrow />
+          <PopoverCloseButton />
+          <PopoverHeader>Notifications!</PopoverHeader>
+          <PopoverBody>
+            You have no new notifications seems like no one love you.Star this
+            project on github and everyone will start loving you
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
       <Tooltip label="Create shit" openDelay={400}>
         <Button
           leftIcon={<IoMdCreate />}
@@ -132,7 +159,12 @@ const Navbar = () => {
             <AiFillStar size="1.4rem" />
             Star on github
           </MenuItem>
-          <MenuItem gap="0.7rem">
+          <MenuItem
+            gap="0.7rem"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
             <IoLogOut size="1.4rem" />
             Logout
           </MenuItem>

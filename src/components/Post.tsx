@@ -45,22 +45,30 @@ const Post = () => {
       <Flex alignItems="center" justifyContent="space-between">
         <Flex gap="1.3rem">
           <Flex alignItems="center" gap="0.4rem">
-            <BsHeart size="1.5rem" cursor="pointer" />
+            <IconButton aria-label="Like" isRound={true}>
+              <BsHeart size="1.5rem" cursor="pointer" />
+            </IconButton>
             <Heading as="h5" size="sm" color="gray.600">
               0
             </Heading>
           </Flex>
           <Flex alignItems="center" gap="0.4rem">
-            <BiCommentDetail size="1.5rem" cursor="pointer" />
+            <IconButton aria-label="Comment" isRound={true}>
+              <BiCommentDetail size="1.5rem" cursor="pointer" />
+            </IconButton>
             <Heading as="h5" size="sm" color="gray.600">
               0
             </Heading>
           </Flex>
           <Flex alignItems="center" gap="0.4rem">
+          <IconButton aria-label="Comment" isRound={true}>
             <MdOutlineReportProblem size="1.5rem" cursor="pointer" />
+            </IconButton>
           </Flex>
         </Flex>
+        <IconButton aria-label="Comment" isRound={true}>
         <BsBookmark size="1.5rem" cursor="pointer" />
+        </IconButton>
       </Flex>
       <Heading
         as="h5"
