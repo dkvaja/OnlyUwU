@@ -8,6 +8,7 @@ import YourPosts from "./pages/YourPosts";
 import Search from "./pages/Search";
 import Profile from "./pages/Profile";
 import Followers from "./pages/Followers";
+import Create from "./pages/Create";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/search/:caption" element={<Search />} />
         <Route path="/profile/:uuid" element={<Profile />} />
         <Route path="/followers" element={<Followers />} />
+        <Route path="/create" element={<Create />} />
       </Routes>
     </Router>
   );
