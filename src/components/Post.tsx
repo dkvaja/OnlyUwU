@@ -1,10 +1,43 @@
 import React from "react";
-import { Flex, Heading, Avatar, IconButton, Image } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Avatar,
+  IconButton,
+  Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  useToast,
+} from "@chakra-ui/react";
+import { ref, deleteObject } from "firebase/storage";
+import { DeleteIcon } from "@chakra-ui/icons";
 import { BiDotsVerticalRounded, BiCommentDetail } from "react-icons/bi";
 import { BsHeart, BsBookmark } from "react-icons/bs";
 import { MdOutlineReportProblem } from "react-icons/md";
+import { formatRelative } from "date-fns";
+import { useAuth } from "../hooks/authListner";
+import { deletePost } from "../services/deleteService";
+import { storage } from "../firebaseConfig";
 
-const Post = () => {
+const Post = ({ postData = "" }: any) => {
+  const user: any = useAuth();
+  const toast = useToast();
+
+  const handleDeletePost = async (postId: string, postImage: string) => {
+    if (!postId) return;
+    const isPostDeleted = await deletePost(postId);
+    if (isPostDeleted) {
+      toast({
+        title: "Post Deleted Successfully",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
     <Flex
       flexDirection="column"
@@ -16,7 +49,7 @@ const Post = () => {
       marginBottom="0.7rem"
     >
       <Flex flexDirection="row" width="100%" alignItems="center">
-        <Avatar cursor="pointer" />
+        <Avatar cursor="pointer" src={postData?.userAvatar} />
         <Flex
           flexDirection="column"
           width="100%"
@@ -24,24 +57,38 @@ const Post = () => {
           gap="0.2rem"
         >
           <Heading as="h3" size="md">
-            Varun
+            {postData?.userName}
           </Heading>
           <Heading as="h4" size="sm" color="gray.600">
-            2 hours ago
+            {postData?.createdAt &&
+              formatRelative(postData?.createdAt?.toDate(), new Date())}
           </Heading>
         </Flex>
-        <IconButton
-          icon={<BiDotsVerticalRounded size="1.6rem" />}
-          aria-label="Shit"
-        />
+        <Menu placement="auto-start">
+          <MenuButton
+            as={IconButton}
+            aria-label="Post Options"
+            icon={<BiDotsVerticalRounded size="1.6rem" />}
+            variant="outline"
+          />
+          <MenuList>
+            {postData?.createdBy === user?.uid && (
+              <MenuItem
+                icon={<DeleteIcon />}
+                onClick={() =>
+                  handleDeletePost(postData?.id, postData?.postImage)
+                }
+              >
+                Delete Post
+              </MenuItem>
+            )}
+          </MenuList>
+        </Menu>
       </Flex>
-      <Image src="/catboi.jpeg" alt="" borderRadius="lg" />
       <Heading as="h5" size="sm">
-        I am dumb piece of shit help god lets gooooo I am dumb piece of shit
-        help god lets gooooo I am dumb piece of shit help god lets gooooo I am
-        dumb piece of shit help god lets gooooo I am dumb piece of shit help god
-        lets gooooo
+        {postData?.caption}
       </Heading>
+      <Image src={postData?.postImage} alt="" borderRadius="lg" />
       <Flex alignItems="center" justifyContent="space-between">
         <Flex gap="1.3rem">
           <Flex alignItems="center" gap="0.4rem">
@@ -49,7 +96,7 @@ const Post = () => {
               <BsHeart size="1.5rem" cursor="pointer" />
             </IconButton>
             <Heading as="h5" size="sm" color="gray.600">
-              0
+              {postData?.like}
             </Heading>
           </Flex>
           <Flex alignItems="center" gap="0.4rem">
@@ -57,17 +104,17 @@ const Post = () => {
               <BiCommentDetail size="1.5rem" cursor="pointer" />
             </IconButton>
             <Heading as="h5" size="sm" color="gray.600">
-              0
+              {postData?.comments?.length}
             </Heading>
           </Flex>
           <Flex alignItems="center" gap="0.4rem">
-          <IconButton aria-label="Comment" isRound={true}>
-            <MdOutlineReportProblem size="1.5rem" cursor="pointer" />
+            <IconButton aria-label="Comment" isRound={true}>
+              <MdOutlineReportProblem size="1.5rem" cursor="pointer" />
             </IconButton>
           </Flex>
         </Flex>
         <IconButton aria-label="Comment" isRound={true}>
-        <BsBookmark size="1.5rem" cursor="pointer" />
+          <BsBookmark size="1.5rem" cursor="pointer" />
         </IconButton>
       </Flex>
       <Heading

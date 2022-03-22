@@ -7,7 +7,7 @@ import CreateComponent from "../components/CreateComponent";
 
 const Create = () => {
   useEffect(() => {
-    document.title = "OnlyUwU - Create post";
+    document.title = "ChatWithMe - Create post";
   }, []);
   return (
     <div>

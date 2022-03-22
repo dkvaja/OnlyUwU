@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Button,
@@ -10,10 +10,10 @@ import {
   Tooltip,
   useColorMode,
   IconButton,
-  AvatarBadge,
+  Image,
 } from "@chakra-ui/react";
 import { ImSearch } from "react-icons/im";
-import { FaSun, FaMoon, FaUser, FaBell } from "react-icons/fa";
+import { FaSun, FaMoon, FaBell } from "react-icons/fa";
 import { IoMdCreate } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import {
@@ -32,20 +32,30 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverBody,
-  PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-  PopoverAnchor,
 } from "@chakra-ui/react";
+import { logOutUser } from "../services/auth";
+import { useAuth } from "../hooks/authListner";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
+  const user: any = useAuth();
   const [search, setSearch] = useState("");
   const [isMobile] = useMediaQuery("(max-width: 768px)");
+
   const starOnGithub = () => {
-    window.location.href = "https://github.com/VarunLanjhara/OnlyUwU";
+    window.location.href = "https://github.com/VarunLanjhara/ChatWithMe";
   };
+
+  const handleLogOutUser = async () => {
+    const res: any = await logOutUser();
+    if (res?.success) {
+      navigate("login", { replace: true });
+    }
+  };
+
   return (
     <Flex
       justifyContent={isMobile ? "" : "space-between"}
@@ -62,7 +72,7 @@ const Navbar = () => {
           size={isMobile ? "sm" : "xl"}
           fontFamily="Sansita Swashed"
         >
-          OnlyUwU
+          ChatWithMe
         </Heading>
       </Flex>
       <form
@@ -145,7 +155,7 @@ const Navbar = () => {
       <Menu>
         <MenuButton>
           <Tooltip label="Idiot" openDelay={400}>
-            <Avatar cursor="pointer" />
+            <Avatar cursor="pointer" src={user?.photoURL} />
           </Tooltip>
         </MenuButton>
         <MenuList>
@@ -155,19 +165,19 @@ const Navbar = () => {
               navigate("/profile/lmao");
             }}
           >
-            <FaUserCircle size="1.4rem" />
+            <Image
+              boxSize="1.4rem"
+              borderRadius="full"
+              src={user?.photoURL}
+              alt={user?.displayName}
+            />
             Your profile
           </MenuItem>
           <MenuItem gap="0.7rem" onClick={starOnGithub}>
             <AiFillStar size="1.4rem" />
             Star on github
           </MenuItem>
-          <MenuItem
-            gap="0.7rem"
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
+          <MenuItem gap="0.7rem" onClick={handleLogOutUser}>
             <IoLogOut size="1.4rem" />
             Logout
           </MenuItem>

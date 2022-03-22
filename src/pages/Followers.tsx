@@ -7,7 +7,7 @@ import LeftSidebar from "../components/LeftSidebar";
 
 const Followers = () => {
   useEffect(() => {
-    document.title = "OnlyUwU - Followers";
+    document.title = "ChatWithMe - Followers";
   }, []);
   return (
     <div>

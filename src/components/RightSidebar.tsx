@@ -14,9 +14,12 @@ import { useNavigate } from "react-router-dom";
 import { IoMdCreate, IoMdImages } from "react-icons/io";
 import { RiUserFollowFill } from "react-icons/ri";
 
+import { useAuth } from "../hooks/authListner";
+
 const RightSidebar = () => {
   const { colorMode } = useColorMode();
   const navigate = useNavigate();
+  const user: any = useAuth();
   return (
     <Flex
       position="sticky"
@@ -36,13 +39,13 @@ const RightSidebar = () => {
           boxShadow="md"
         >
           <Flex borderRadius="50%">
-            <Image src="/catboi.jpeg" alt="" width="90%" height="90%" />
+            <Image src={user?.photoURL} alt="" width="90%" height="90%" />
           </Flex>
           <Flex flexDirection="column" alignItems="start">
             <Heading as="h5" size="lg">
-              Painman
+              {user?.displayName}
             </Heading>
-            <Text>@painman</Text>
+            <Text>@{user?.displayName}</Text>
           </Flex>
         </Flex>
       </Tooltip>

@@ -1,6 +1,15 @@
 import { Avatar, Divider, Flex, Heading, Tag, Tooltip } from "@chakra-ui/react";
 import React from "react";
+import {
+  collection,
+  query,
+  where,
+  orderBy,
+  onSnapshot,
+} from "firebase/firestore";
 import Post from "./Post";
+import { db } from "../firebaseConfig";
+import CreateComponent from "./CreateComponent";
 
 type Props = {
   isExplore: boolean;
@@ -12,6 +21,20 @@ type Props = {
 };
 
 const Feed = (props: Props) => {
+  const [posts, setPosts] = React.useState<any>("");
+
+  React.useEffect(() => {
+    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const cities: any = [];
+      querySnapshot.forEach((doc) => {
+        cities.push(doc.data());
+      });
+      setPosts(cities);
+    });
+    return unsubscribe;
+  }, []);
+
   return props?.isExplore ? (
     <Flex
       flexDirection="column"
@@ -147,7 +170,7 @@ const Feed = (props: Props) => {
       top="5.4rem"
       height="max-content"
     >
-      <Flex gap="1rem" width="100%" flexWrap="wrap">
+      {/* <Flex gap="1rem" width="100%" flexWrap="wrap">
         <Tag>Gaming</Tag>
         <Tag>Programming</Tag>
         <Tag>Movies</Tag>
@@ -160,11 +183,11 @@ const Feed = (props: Props) => {
         <Tag>To</Tag>
         <Tag>Write</Tag>
         <Tag>Lol</Tag>
-      </Flex>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      </Flex> */}
+      <CreateComponent />
+      {posts &&
+        posts?.length > 0 &&
+        posts?.map((p: any) => <Post postData={p} key={p.id} />)}
     </Flex>
   );
 };

@@ -13,13 +13,14 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { ImSearch } from "react-icons/im";
-import { FaSun, FaMoon, FaUser } from "react-icons/fa";
+import { FaSun, FaMoon } from "react-icons/fa";
 import { AiOutlineFire } from "react-icons/ai";
 
 const LoginNavbar = () => {
   useEffect(() => {
-    document.title = "OnlyUwU - Login";
+    document.title = "ChatWithMe - Login";
   }, []);
+
   const { colorMode, toggleColorMode } = useColorMode();
   const toast = useToast();
   return (
@@ -38,7 +39,7 @@ const LoginNavbar = () => {
           size="xl"
           fontFamily="Sansita Swashed"
         >
-          OnlyUwU
+          ChatWithME
         </Heading>
       </Flex>
       <Tooltip label="Search shit" openDelay={400}>

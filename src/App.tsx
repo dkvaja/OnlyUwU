@@ -1,8 +1,17 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 import Loader from "./components/Loader";
+import { useAuth } from "./hooks/authListner";
+import { AuthProvider } from "./provider/AuthProvider";
 
 function App() {
+  const user = useAuth();
+
   const Home = lazy(() => import("./pages/Home"));
   const Login = lazy(() => import("./pages/Login"));
   const Explore = lazy(() => import("./pages/Explore"));
@@ -15,17 +24,46 @@ function App() {
   return (
     <Router>
       <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/your_posts" element={<YourPosts />} />
-          <Route path="/search/:caption" element={<Search />} />
-          <Route path="/profile/:uuid" element={<Profile />} />
-          <Route path="/followers" element={<Followers />} />
-          <Route path="/create" element={<Create />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route
+              path="/"
+              element={user ? <Home /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/login"
+              element={!user ? <Login /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/explore"
+              element={user ? <Explore /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/library"
+              element={user ? <Library /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/your_posts"
+              element={user ? <YourPosts /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/search/:caption"
+              element={user ? <Search /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/profile/:uuid"
+              element={user ? <Profile /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/followers"
+              element={user ? <Followers /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/create"
+              element={user ? <Create /> : <Navigate to="/login" />}
+            />
+          </Routes>
+        </AuthProvider>
       </Suspense>
     </Router>
   );
